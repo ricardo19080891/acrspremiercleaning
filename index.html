@@ -407,7 +407,7 @@ footer b{color:#fff;font-family:var(--f-d)}
       <h3 data-i="rvh" style="font:700 1.25rem var(--f-d);margin:0"></h3>
       <label><span data-i="rvn"></span><input id="rv-n" autocomplete="name" data-p="rvnp"></label>
       <div><span data-i="rvr"></span><div class="stp" id="stp" role="radiogroup"></div></div>
-      <label><span data-i="rvx"></span><textarea id="rv-t" data-p="rvxp"></textarea></label>
+      <input id="rv-h" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;opacity:0;height:0;width:0"><label><span data-i="rvx"></span><textarea id="rv-t" data-p="rvxp"></textarea></label>
       <button class="btn" type="submit" data-i="rvsend"></button>
       <div class="ok" id="rvok" role="status"></div>
       <p class="rvnote" data-i="rvnote"></p>
@@ -789,6 +789,7 @@ document.addEventListener("keydown",function(e){
 });
 
 /* ---------- tips + reviews data ---------- */
+var REVIEWS_API="https://script.google.com/macros/s/AKfycbyV8-8fYZ0XbA0JpnmGMoojXtO5mCfZPmzjaEW63JHifffnDnDCUQ8LSfEqMXn0VCaC0w/exec";   /* paste the Google Apps Script web app URL here */
 var GOOGLE_URL="",FB_URL="",IG_URL="";   /* paste your real review/profile links here */
 var REVIEWS=[];                           /* approved real reviews: {n:"Name",s:5,x:"Text"} */
 var TI=["key","sparkle","house","box","check","building"];
@@ -805,8 +806,8 @@ en:{n6:"Tips",n7:"Reviews",tpt:"Cleaning tips from the pros",tps:"Simple tricks 
  rvt:"What our customers say",rvs:"Honest feedback from real customers. Share your own experience below.",
  rve:"Be our first review",rvem:"We are a new, locally owned company, and we only publish real reviews. Tell us how we did.",
  rvh:"Leave a review",rvn:"Your name",rvnp:"First name or name and initial",rvr:"Your rating",rvx:"Your experience",rvxp:"What did you like? What can we improve?",rvsend:"Send my review",
- rvnote:"Your review is sent to us on WhatsApp and we publish it on this page with your permission.",
- rvok:"Thank you! WhatsApp should open with your review ready to send. Tap Send to finish.",rvbad:"Please choose your stars and write a few words.",
+ rvnote:"Reviews appear on this page after we approve them.",
+ rvok:"Thank you! WhatsApp should open with your review ready to send. Tap Send to finish.",rvok2:"Thank you! Your review was received. It will appear on this page after we approve it.",rverr:"Sorry, we could not send it. Please try again or message us on WhatsApp.",rvbad:"Please choose your stars and write a few words.",
  rvg:"Review us on Google",rvf:"Facebook",rvi:"Instagram",rvw:"Send on WhatsApp",rvmsg:"New review for ACRS Premier Cleaning",rvstar:"stars"},
 pt:{n6:"Dicas",n7:"Avaliações",tpt:"Dicas de limpeza de quem faz todo dia",tps:"Truques simples que usamos em todo serviço. Toque em uma dica para abrir.",tprot:"Dica de profissional",
  tips:[
@@ -820,8 +821,8 @@ pt:{n6:"Dicas",n7:"Avaliações",tpt:"Dicas de limpeza de quem faz todo dia",tps
  rvt:"O que dizem nossos clientes",rvs:"Opiniões sinceras de clientes reais. Compartilhe a sua experiência abaixo.",
  rve:"Seja a nossa primeira avaliação",rvem:"Somos uma empresa nova, de dono local, e só publicamos avaliações reais. Conte como foi o nosso serviço.",
  rvh:"Deixe sua avaliação",rvn:"Seu nome",rvnp:"Primeiro nome ou nome e inicial",rvr:"Sua nota",rvx:"Sua experiência",rvxp:"O que você gostou? O que podemos melhorar?",rvsend:"Enviar minha avaliação",
- rvnote:"Sua avaliação chega até nós pelo WhatsApp e só publicamos nesta página com a sua permissão.",
- rvok:"Obrigado! O WhatsApp deve abrir com a sua avaliação pronta. Toque em Enviar para concluir.",rvbad:"Escolha as estrelas e escreva algumas palavras.",
+ rvnote:"As avaliações aparecem nesta página depois que as aprovamos.",
+ rvok:"Obrigado! O WhatsApp deve abrir com a sua avaliação pronta. Toque em Enviar para concluir.",rvok2:"Obrigado! Recebemos sua avaliação. Ela aparecerá nesta página depois que aprovarmos.",rverr:"Desculpe, não foi possível enviar. Tente de novo ou fale conosco no WhatsApp.",rvbad:"Escolha as estrelas e escreva algumas palavras.",
  rvg:"Avalie no Google",rvf:"Facebook",rvi:"Instagram",rvw:"Enviar pelo WhatsApp",rvmsg:"Nova avaliação para ACRS Premier Cleaning",rvstar:"estrelas"},
 es:{n6:"Consejos",n7:"Reseñas",tpt:"Consejos de limpieza de los profesionales",tps:"Trucos simples que usamos en cada trabajo. Toca un consejo para abrirlo.",tprot:"Consejo profesional",
  tips:[
@@ -835,21 +836,22 @@ es:{n6:"Consejos",n7:"Reseñas",tpt:"Consejos de limpieza de los profesionales",
  rvt:"Lo que dicen nuestros clientes",rvs:"Opiniones sinceras de clientes reales. Comparte tu experiencia abajo.",
  rve:"Sé nuestra primera reseña",rvem:"Somos una empresa nueva, de dueño local, y solo publicamos reseñas reales. Cuéntanos cómo te fue.",
  rvh:"Deja tu reseña",rvn:"Tu nombre",rvnp:"Nombre o nombre e inicial",rvr:"Tu calificación",rvx:"Tu experiencia",rvxp:"¿Qué te gustó? ¿Qué podemos mejorar?",rvsend:"Enviar mi reseña",
- rvnote:"Tu reseña nos llega por WhatsApp y solo la publicamos en esta página con tu permiso.",
- rvok:"¡Gracias! WhatsApp debería abrirse con tu reseña lista. Toca Enviar para terminar.",rvbad:"Elige tus estrellas y escribe unas palabras.",
+ rvnote:"Las reseñas aparecen en esta página después de que las aprobamos.",
+ rvok:"¡Gracias! WhatsApp debería abrirse con tu reseña lista. Toca Enviar para terminar.",rvok2:"¡Gracias! Recibimos tu reseña. Aparecerá en esta página cuando la aprobemos.",rverr:"Lo sentimos, no se pudo enviar. Inténtalo de nuevo o escríbenos por WhatsApp.",rvbad:"Elige tus estrellas y escribe unas palabras.",
  rvg:"Reseña en Google",rvf:"Facebook",rvi:"Instagram",rvw:"Enviar por WhatsApp",rvmsg:"Nueva reseña para ACRS Premier Cleaning",rvstar:"estrellas"}
 };
 Object.keys(D2).forEach(function(l){for(var k in D2[l])T[l][k]=D2[l][k]});
 
 /* ---------- tips + reviews engine ---------- */
 var rvStars=0;
+function esc(v){return String(v==null?"":v).replace(/[&<>"']/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]})}
 function stars(n){return "★★★★★".slice(0,n)+"☆☆☆☆☆".slice(0,5-n)}
 function renderTR(){
  var t=T[L];
  $("tipg").innerHTML=t.tips.map(function(x,i){
   return '<details class="tip"><summary><span class="ti">'+svg(TI[i])+'</span><span class="tt"><span>'+x[0]+'</span><small>'+x[1]+'</small></span></summary><div class="tb"><ol>'+x[2].map(function(a){return '<li><span>'+a+'</span></li>'}).join("")+'</ol><p class="pro"><b>'+t.tprot+':</b> '+x[3]+'</p></div></details>';
  }).join("");
- $("rvl").innerHTML=REVIEWS.length?REVIEWS.map(function(r){return '<div class="rvc"><div class="st" aria-label="'+r.s+' '+t.rvstar+'">'+stars(r.s)+'</div><p>'+r.x+'</p><b>'+r.n+'</b></div>'}).join(""):'<div class="rve"><div class="st" aria-hidden="true">★★★★★</div><h3>'+t.rve+'</h3><p>'+t.rvem+'</p></div>';
+ $("rvl").innerHTML=REVIEWS.length?REVIEWS.map(function(r){return '<div class="rvc"><div class="st" aria-label="'+(+r.s)+' '+t.rvstar+'">'+stars(r.s)+'</div><p>'+esc(r.x)+'</p><b>'+esc(r.n)+'</b></div>'}).join(""):'<div class="rve"><div class="st" aria-hidden="true">★★★★★</div><h3>'+t.rve+'</h3><p>'+t.rvem+'</p></div>';
  var ch="";
  if(GOOGLE_URL)ch+='<a href="'+GOOGLE_URL+'" target="_blank" rel="noopener">'+t.rvg+'</a>';
  if(FB_URL)ch+='<a href="'+FB_URL+'" target="_blank" rel="noopener">'+t.rvf+'</a>';
@@ -864,11 +866,23 @@ document.addEventListener("click",function(e){
 $("rvf").addEventListener("submit",function(e){
  e.preventDefault();var t=T[L],n=$("rv-n").value.trim(),x=$("rv-t").value.trim(),ok=$("rvok");
  if(!rvStars||x.length<3){ok.textContent=t.rvbad;ok.className="ok show";return}
+ if($("rv-h").value)return;
+ if(REVIEWS_API){
+  var btn=e.target.querySelector("button[type=submit]");btn.disabled=true;
+  fetch(REVIEWS_API,{method:"POST",mode:"no-cors",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({n:n.slice(0,60),s:rvStars,x:x.slice(0,800),l:L})})
+  .then(function(){ok.textContent=t.rvok2;ok.className="ok show";$("rv-t").value="";$("rv-n").value="";rvStars=0;renderTR()})
+  .catch(function(){ok.textContent=t.rverr;ok.className="ok show"})
+  .then(function(){btn.disabled=false});
+  return;
+ }
  var msg=t.rvmsg+"\n"+stars(rvStars)+" ("+rvStars+"/5)\n"+x+"\n- "+(n||"—");
  var u="https://wa.me/"+PHONE+"?text="+encodeURIComponent(msg);
  ok.innerHTML=t.rvok+' <a href="'+u+'" target="_blank" rel="noopener">'+t.rvw+'</a>';ok.className="ok show";
  try{window.open(u,"_blank","noopener")}catch(_){}
 });
+
+if(REVIEWS_API){fetch(REVIEWS_API).then(function(r){return r.json()}).then(function(a){
+ if(Array.isArray(a)){REVIEWS=a.filter(function(r){return r&&r.x&&r.s>=1&&r.s<=5}).slice(0,30);renderTR()}}).catch(function(){})}
 
 /* after every render: hero chips, headline word, open dialog text */
 afterRender=function(){
