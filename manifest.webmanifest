@@ -1,0 +1,14 @@
+{
+  "name": "ACRS Premier Cleaning",
+  "short_name": "ACRS",
+  "description": "Residential, commercial and Airbnb cleaning in Spartanburg, SC. Clean Spaces • Better Stays.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#eaf2fc",
+  "theme_color": "#12305c",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any maskable"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+  ]
+}
